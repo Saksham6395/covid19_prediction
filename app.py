@@ -1,31 +1,42 @@
-import streamlit as st
+import gradio as gr
 import pickle
 import numpy as np
 
-# Load models
+# Load models dictionary
 with open("covid_models.pkl", "rb") as f:
     models = pickle.load(f)
 
-lin_reg = models["linear_regression"]
-lin_reg_poly = models["polynomial_regression"]
-svm = models["support_vector_regression"]
-poly = models["polynomial_transformer"]
+# Use polynomial regression (or classification) model if available
+model = models['polynomial_regression']  # replace with your exact key from models
 
-st.title("COVID-19 Case Predictor")
+def predict(age, fever, body_pain, runny_nose, diff_breathing):
+    # Convert Yes/No radio inputs to 1/0
+    body_pain = 1 if body_pain == "Yes" else 0
+    runny_nose = 1 if runny_nose == "Yes" else 0
+    diff_breathing = 1 if diff_breathing == "Yes" else 0
 
-# User input for days since first observation
-days = st.slider("Days Since First Report", 0, 500, 100)
+    # Create input feature array as model expects
+    input_data = np.array([[age, fever, body_pain, runny_nose, diff_breathing]])
 
-# Make predictions
-input_day = np.array(days).reshape(-1, 1)
-input_poly = poly.transform(input_day)
+    # Predict (assuming model is a classifier, threshold at 0.5)
+    prediction = model.predict(input_data)[0]
+    result = "Positive" if prediction >= 0.5 else "Negative"
+    return result
 
-lr_pred = lin_reg.predict(input_day)[0]
-poly_pred = lin_reg_poly.predict(input_poly)[0]
-svm_pred = svm.predict(input_day)[0]
+# Gradio UI
+demo = gr.Interface(
+    fn=predict,
+    inputs=[
+        gr.Slider(1, 100, step=1, label="Age"),
+        gr.Slider(95.0, 105.0, step=0.1, label="Fever (°F)"),
+        gr.Radio(["No", "Yes"], label="Body Pain"),
+        gr.Radio(["No", "Yes"], label="Runny Nose"),
+        gr.Radio(["No", "Yes"], label="Difficulty in Breathing")
+    ],
+    outputs="text",
+    title="COVID-19 Prediction App",
+    description="Predict COVID-19 status based on symptoms."
+)
 
-# Show results
-st.subheader("Predicted Confirmed Cases:")
-st.write(f"Linear Regression: {int(lr_pred)}")
-st.write(f"Polynomial Regression: {int(poly_pred)}")
-st.write(f"SVM Regression: {int(svm_pred)}")
+if __name__ == "__main__":
+    demo.launch()
