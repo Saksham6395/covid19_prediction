@@ -28,7 +28,7 @@ Clone the repo:
 bash
 Copy
 Edit
-git clone https://github.com/your-username/covid19.git
+git clone https://github.com/Saksham6395/covid19.git
 Install requirements:
 
 bash
