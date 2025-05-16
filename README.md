@@ -96,11 +96,13 @@ Model and dataset files
 Refer to the official configuration guide here:https://huggingface.co/docs/hub/spaces-config-reference
 
 
-## Project Structure
-covid19/
-├── app.py                  # Main Gradio app script
-├── model.pkl               # Trained regression model (pickle)
-├── dataset.csv             # Historical COVID-19 case data
-├── requirements.txt        # Dependencies list
-└── README.md               # Project documentation
+##  Project Structure
+
+| File/Folder       | Description                               |
+|-------------------|-------------------------------------------|
+| `app.py`          | Main Gradio app script                    |
+| `model.pkl`       | Trained regression model (saved as pickle)|
+| `dataset.csv`     | Historical COVID-19 case data             |
+| `requirements.txt`| Python dependencies                       |
+
 
