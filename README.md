@@ -1,57 +1,106 @@
-Here is the reference the overleaf code:https://www.overleaf.com/project/6825b665a3c1d187db720d26
+# 🦠 COVID-19 Case Prediction using Polynomial Regression
 
-COVID-19 Prediction using Polynomial Regression
-This is a simple machine learning project that predicts the number of COVID-19 cases based on a given date using Polynomial Regression.
+A machine learning project that predicts the number of COVID-19 cases based on a given future date using **Polynomial Regression**. Built using Python and deployed with an interactive UI on **Hugging Face Spaces**.
 
-🔍 About the Project
-Input: Date (e.g., 2025-06-01)
+---
 
-Output: Predicted number of COVID-19 patients
+## Table of Contents
 
-This model uses Polynomial Regression to fit past case data and forecast future values.
+- [About the Project](#-about-the-project)  
+- [Live Demo](#-live-demo)  
+- [Technologies Used](#-technologies-used)  
+- [Installation & Usage](#-installation--usage)  
+- [Model Overview](#-model-overview)  
+- [Deployment Guide](#-deployment-guide)  
+- [Project Structure](#-project-structure)  
+ 
 
-Built using Python and deployed on Hugging Face Spaces.
+---
 
-🚀 Live Demo
-Check out the live app here:
-👉 Hugging Face Space – kiyoya123/covid19
+##  About the Project
 
-🛠 Technologies Used
-Python
-Scikit-learn
-Pandas
-NumPy
-Matplotlib
-Gradio (for UI)
+This project provides a web-based tool for predicting future COVID-19 case numbers.
 
-📦 Usage
-Clone the repo:
+- **Input**: Date (e.g., `2025-06-01`)
+- **Output**: Predicted number of COVID-19 cases
 
-bash
-Copy
-Edit
+The model is trained on historical case data and uses polynomial regression to fit the curve and forecast future values.
+
+---
+
+##  Live Demo
+
+Try the live version hosted on Hugging Face Spaces:  
+[kiyoya123/covid19](https://huggingface.co/spaces/kiyoya123/covid19)
+
+---
+
+## Technologies Used
+
+- **Python** – Programming language  
+- **Scikit-learn** – Machine learning model  
+- **Pandas** – Data manipulation  
+- **NumPy** – Numerical operations  
+- **Matplotlib** – Data visualization  
+- **Gradio** – Web-based UI for model interaction  
+
+---
+
+## Installation & Usage
+
+Follow the steps below to run the project locally:
+
+### 1. Clone the Repository
 git clone https://github.com/Saksham6395/covid19.git
-Install requirements:
+cd covid19
 
-bash
-Copy
-Edit
-pip install -r requirements.txt
-Run the script:
+ Install Dependencies : pip install -r requirements.txt
 
-bash
-Copy
-Edit
-python app.py
-Enter a future date to get the predicted COVID-19 case count.
+ Run the App  : python app.py
 
-🧠 Model
-Uses Polynomial Features with Linear Regression.
+## Model Overview
+Model Type: Polynomial Regression (using Scikit-learn)
 
-Trained on historical COVID-19 case data.
+Features:
 
-Converts dates to numerical format for regression.
+Transforms date into numerical format for fitting
 
-📄 Configuration
-Refer to the Hugging Face Spaces config guide for deployment:
-https://huggingface.co/docs/hub/spaces-config-reference
+Applies polynomial features to capture non-linear trends
+
+Predicts based on best-fit curve of historical data
+
+Training Data: Historical COVID-19 case records (dataset.csv)
+
+Deployment: Saved model loaded using pickle
+
+
+## Deployment Guide
+To deploy this project on Hugging Face Spaces:
+
+Push your repository to GitHub.
+
+Create a new Space at:https://huggingface.co
+
+Link your GitHub repo.
+
+Ensure you include:
+
+app.py
+
+requirements.txt
+
+README.md
+
+Model and dataset files
+
+Refer to the official configuration guide here:https://huggingface.co/docs/hub/spaces-config-reference
+
+
+## Project Structure
+covid19/
+├── app.py                  # Main Gradio app script
+├── model.pkl               # Trained regression model (pickle)
+├── dataset.csv             # Historical COVID-19 case data
+├── requirements.txt        # Dependencies list
+└── README.md               # Project documentation
+
