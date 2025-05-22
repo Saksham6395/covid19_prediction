@@ -94,6 +94,7 @@ README.md
 Model and dataset files
 
 Refer to the official configuration guide here:https://huggingface.co/docs/hub/spaces-config-reference
+here is the drive link for complete process video and apk link:https://drive.google.com/drive/folders/1GG-OLPPlkFwJ1-UmPMMRFrnA50pbl22d?usp=drive_link
 
 
 ##  Project Structure
